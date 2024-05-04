@@ -131,7 +131,9 @@ async function scrapeData(
             .replace(/\n/g, '')
             .replace(/\s+/g, ' ')
             .split(' ')
-            .map(tag => tag.trim())
+            .map(
+            tag => tag.trim()
+            )
 
           data[key].push(tags)
         })
@@ -218,6 +220,6 @@ export async function GET() {
       return Response.json({ error: "Something went wrong" })
   }
 
-  return Response.json({ status: 'success'})
+  return Response.json({ status: scrapedData})
 }
 
