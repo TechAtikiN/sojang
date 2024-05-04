@@ -16,6 +16,7 @@ interface Selectors {
   description: string
   bookUrl: string
   author: string
+  tags: string
 }
 
 // transformData function is used to transform the data from the scraped data to the desired format
@@ -28,6 +29,7 @@ function transformData(data: {
   description: string[]
   bookUrl: string[]
   author: string[]
+  tags: string[][]
 }) {
   const transformedData = data.title.map((_, index) => {
     return {
@@ -38,7 +40,8 @@ function transformData(data: {
       image: data.image[index],
       description: data.description[index],
       bookUrl: data.bookUrl[index],
-      author: data.author[index]
+      author: data.author[index],
+      tags: data.tags[index]
     }
   })
 
@@ -59,6 +62,7 @@ async function scrapeData(
     description: string
     bookUrl: string
     author: string
+    tags: string[]
   }[]
 > {
   // Fetch the HTML content
@@ -83,6 +87,7 @@ async function scrapeData(
     description: string[]
     bookUrl: string[]
     author: string[]
+    tags: string[][]
   } = {
     title: [],
     price: [],
@@ -92,7 +97,8 @@ async function scrapeData(
     image: [],
     description: [],
     bookUrl: [],
-    author: []
+    author: [],
+    tags: []
   }
 
   // Extract data using the provided selectors
@@ -113,6 +119,21 @@ async function scrapeData(
             .trim()
 
           data[key].push(text)
+        })
+
+        break
+      case 'tags':
+        const elements_tags = $(selectors[key])
+
+        elements_tags.each((_, element) => {
+          const tags = $(element)
+            .text()
+            .replace(/\n/g, '')
+            .replace(/\s+/g, ' ')
+            .split(' ')
+            .map(tag => tag.trim())
+
+          data[key].push(tags)
         })
 
         break
@@ -174,7 +195,8 @@ export async function GET() {
     image: '.img_bdr',
     description: '.gd_nameE',
     bookUrl: '.lnk_img',
-    author: '.info_auth'
+    author: '.info_auth',
+    tags: '.info_tag'
   }
 
   // Scrape the data from the target URL using the provided selectors
@@ -196,6 +218,6 @@ export async function GET() {
       return Response.json({ error: "Something went wrong" })
   }
 
-  return Response.json(scrapedData)
+  return Response.json({ status: 'success'})
 }
 

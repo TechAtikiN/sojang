@@ -22,6 +22,7 @@ export const books = pgTable(
     author: text('author'),
     createdAt: timestamp('createdAt').defaultNow(),
     updatedAt: timestamp('updatedAt').defaultNow(),
+    tags: text('tags').array()
   },
   (books) => {
     return {
