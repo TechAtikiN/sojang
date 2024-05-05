@@ -1,5 +1,6 @@
 // named imports
 import { getBookCategories } from '@/actions/books'
+import { Suspense } from 'react'
 
 // default imports
 import Sidebar from './books/components/sidebar'
@@ -15,7 +16,9 @@ export default async function BooksLayout({ children }: Props) {
     <div className='md:grid md:grid-cols-9 flex flex-col'>
       {/* SIDEBAR  */}
       <aside className='md:col-span-2 bg-zinc-50 h-full'>
-        <Sidebar categories={categories as string[]} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Sidebar categories={categories as string[]} />
+        </Suspense>
       </aside>
 
       {/* MAIN CONTENT */}

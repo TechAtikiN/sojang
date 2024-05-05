@@ -22,7 +22,7 @@ export default function CategoryItem({ category }: Props) {
   return (
     <button
       onClick={onClick}
-      className={`${isActiveCategory ? 'text-slate-700 font-bold underline' : 'text-slate-500'} sm:text-left text-base whitespace-nowrap sm:text-lg font-semibold hover:text-slate-950 cursor-pointer`}
+      className={`${isActiveCategory ? 'text-slate-700 font-bold underline' : 'text-slate-400'} sm:text-left text-base whitespace-nowrap sm:text-lg font-semibold hover:text-slate-950 cursor-pointer`}
     >
       {category}
     </button>
