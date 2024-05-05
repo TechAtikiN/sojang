@@ -1,5 +1,8 @@
-import { MoveRight } from "lucide-react";
-import Link from "next/link";
+// named imports
+import { MoveRight } from 'lucide-react'
+
+// default imports
+import Link from 'next/link'
 
 export default function Home() {
   return (
