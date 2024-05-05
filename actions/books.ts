@@ -6,6 +6,7 @@ import { like, or } from 'drizzle-orm'
 
 // default imports
 import db from '@/db/drizzle'
+import { revalidatePath } from 'next/cache'
 
 export async function getBooks(category?: string) {
   let booksData
@@ -26,6 +27,7 @@ export async function getBooks(category?: string) {
 
   if(!booksData) return null
 
+  revalidatePath('/books')
   return booksData
 }
 
@@ -59,5 +61,6 @@ export async function getBookCategories() {
   }).flat().filter((category) => category !== null)
 
   const distinctCategories = Array.from(new Set(categoriesArr))
+
   return distinctCategories
 }
