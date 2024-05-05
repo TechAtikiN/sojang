@@ -4,11 +4,11 @@
 import { useEffect, useState } from 'react'
 import { debounce } from 'lodash'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { getBooksByTitleAuthor } from '@/actions/books'
 
 // default imports
 import Image from 'next/image'
 import Link from 'next/link'
-import { getBooksByTitleAuthor } from '@/actions/books'
 
 type SearchItem = {
   id: number
@@ -64,7 +64,7 @@ export default function Search() {
             // focus the input again if showPopover is true
             onBlur={() => showPopover && setTimeout(() => document?.getElementById('search-book')?.focus(), 0)}
             type='text'
-            className={`py-3 absolute w-1/2 top-12 left-1/4 px-4 border border-gray-300 rounded-md text-sm focus:outline-none shadow-md ${loading ? 'cursor-wait border-accent animate-pulse' : 'cursor-text'
+            className={`py-3 absolute w-3/4 ml-20 sm:ml-0 sm:mx-auto sm:w-1/2 top-12 sm:left-1/4 px-4 border border-gray-300 rounded-md focus:outline-none shadow-md ${loading ? 'cursor-wait border-accent animate-pulse' : 'cursor-text'
               }`}
             placeholder={loading ? 'Loading...' : 'Search for books by Title or Author'}
           />

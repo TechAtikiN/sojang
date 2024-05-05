@@ -401,7 +401,7 @@ export default async function BooksPage({ searchParams }: { searchParams: { cate
             >
               <div className='grid grid-cols-3 gap-5'>
                 {/* book image */}
-                <div className='relative h-36 sm:h-56 col-span-1'>
+                <div className='relative h-44 sm:h-56 col-span-1'>
                   <Image
                     alt={book.title}
                     className='object-cover'
@@ -458,8 +458,8 @@ export default async function BooksPage({ searchParams }: { searchParams: { cate
                   </div>
 
                   {/* book tags */}
-                  <div className='hidden sm:flex flex-wrap justify-start items-center space-x-2 space-y-1'>
-                    {book.tags && book.tags.map((tag: string, index: number) => (
+                  <div className='flex flex-wrap justify-start items-center space-x-2 space-y-1'>
+                    {book.tags && (book.tags.slice(1, -1)).map((tag: string, index: number) => (
                       <span key={index} className='text-[10px] bg-zinc-100 rounded-full px-2 py-1 text-slate-700 border border-neutral-200'>
                         {tag !== '' && tag}
                       </span>

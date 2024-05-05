@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 export default function Home() {
   return (
-    <div className='flex flex-col justify-center items-center space-y-8 sm:py-16 py-10'>
+    <div className='flex flex-col justify-center items-center space-y-8 sm:py-20 py-10'>
       {/* BADGE  */}
       <p className='rounded-full px-3 text-center w-60 sm:w-80 mx-auto py-2 bg-indigo-200 font-semibold text-lg text-slate-800'>Find the latest of the week!</p>
 
