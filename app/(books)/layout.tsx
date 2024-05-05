@@ -2,7 +2,7 @@
 import { getBookCategories } from '@/actions/books'
 
 // default imports
-import Sidebar from './components/sidebar'
+import Sidebar from './books/components/sidebar'
 
 type Props = {
   children: React.ReactNode

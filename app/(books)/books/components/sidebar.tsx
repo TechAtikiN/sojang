@@ -1,4 +1,5 @@
 // default imports
+import Link from 'next/link'
 import CategoryItem from './category-item'
 
 type Props = {
@@ -9,11 +10,11 @@ export default function Sidebar({ categories }: Props) {
   return (
     <div className='flex flex-col p-4 h-screen'>
       {/* LOGO */}
-      <h2
+      <Link href='/'
         className='font-semibold lowercase text-center font-serif text-3xl text-slate-700'
       >
         Sojang
-      </h2>
+      </Link>
 
       {/* CATEGORY LISTING */}
       <div className='mt-8 px-6'>
