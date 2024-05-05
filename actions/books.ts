@@ -2,33 +2,18 @@
 
 // named imports
 import { Book, books } from '@/db/schema'
-import { like, or } from 'drizzle-orm'
+import { arrayContains, like, or } from 'drizzle-orm'
+import { revalidatePath } from 'next/cache'
 
 // default imports
 import db from '@/db/drizzle'
-import { revalidatePath } from 'next/cache'
 
-export async function getBooks(category?: string) {
-  let booksData
-
-  if (category !== undefined && category !== ('all' || '모두')) {
-    const booksDetails = await db.select().from(books)
-
-    // filter books by category
-    booksData = booksDetails.filter((book: Book) => {
-      if (book.tags && book.tags.includes(category)) {
-        return book
-      }
-    })
-
+export async function getBooks(category: string) {
+  if (category) {
+    return await db.select().from(books).where(arrayContains(books.tags, [category]))
   } else {
-    booksData = await db.select().from(books)
+    return await db.select().from(books)
   }
-
-  if(!booksData) return null
-
-  revalidatePath('/books')
-  return booksData
 }
 
 export async function getBooksByTitleAuthor(search: string) {

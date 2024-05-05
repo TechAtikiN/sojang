@@ -8,6 +8,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Search from './components/search'
 
+export const dynamic = 'force-dynamic'
+
 // const books = [
 //   {
 //     "title": "4~7세 보고 만지는 수학은 이렇게 가르칩니다",
@@ -459,7 +461,7 @@ export default async function BooksPage({ searchParams }: { searchParams: { cate
 
                   {/* book tags */}
                   <div className='flex flex-wrap justify-start items-center space-x-2 space-y-1'>
-                    {book.tags && (book.tags.slice(1, -1)).map((tag: string, index: number) => (
+                    {book.tags && book.tags.map((tag: string, index: number) => (
                       <span key={index} className='text-[10px] bg-zinc-100 rounded-full px-2 py-1 text-slate-700 border border-neutral-200'>
                         {tag !== '' && tag}
                       </span>

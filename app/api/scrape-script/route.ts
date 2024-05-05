@@ -132,10 +132,10 @@ async function scrapeData(
             .replace(/\s+/g, ' ')
             .split(' ')
             .map(
-            tag => tag.trim()
+            tag => tag.trim().slice(1)
             )
 
-          data[key].push(tags)
+          data[key].push(tags.filter(tag => tag !== ''))
         })
 
         break

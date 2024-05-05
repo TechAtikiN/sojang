@@ -1,6 +1,6 @@
 // named imports
-import { getBookCategories } from '@/actions/books'
 import { Suspense } from 'react'
+import { getBookCategories } from '@/actions/books'
 
 // default imports
 import Sidebar from './books/components/sidebar'
