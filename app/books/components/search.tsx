@@ -28,7 +28,6 @@ export default function Search() {
     setLoading(true)
     const data = await getBooksByTitleAuthor(search)
     setBooks(data)
-    console.log(data)
     setLoading(false)
   }
 
@@ -81,7 +80,7 @@ export default function Search() {
             <Link
               target='_blank'
               href={`${book?.bookUrl}`}
-              key={book?.id} className='flex items-center space-x-3 p-2 hover:bg-accent/10 last:rounded-b-xl first:rounded-t-xl'
+              key={book?.id} className='flex items-center space-x-3 hover:bg-slate-200/60 p-2 last:rounded-b-xl first:rounded-t-xl'
             >
               {/* <Image height={10} width={10} src={book?.imageSrc} alt={book?.title} className='w-10 h-10 object-cover rounded-md' /> */}
               <div>

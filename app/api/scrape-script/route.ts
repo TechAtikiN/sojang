@@ -1,8 +1,8 @@
+import { books } from '@/db/schema'
+import { revalidatePath } from 'next/cache'
 import db from '@/db/drizzle'
 import * as cheerio from 'cheerio'
-import { cache } from 'react'
 import axios from 'axios'
-import { books } from '@/db/schema'
 
 const BASE_URL = 'https://www.yes24.com/'
 
@@ -219,6 +219,8 @@ export async function GET() {
   } catch (error) {
       return Response.json({ error: "Something went wrong" })
   }
+
+  revalidatePath('/books')
 
   return Response.json({ status: scrapedData})
 }

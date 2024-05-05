@@ -1,7 +1,7 @@
 'use client'
 
 // named imports
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 interface Props {
   category: string
@@ -9,16 +9,20 @@ interface Props {
 
 export default function CategoryItem({ category }: Props) {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const categoryParam = searchParams.get('category')
+
+  const isActiveCategory = categoryParam ? categoryParam === category : category === '모두'
 
   const onClick = () => {
-    const url = category === 'All' ? '/books' : `/books?category=${category.toLowerCase()}`
+    const url = category === '모두' ? '/books' : `/books?category=${category}`
     router.replace(url)
   }
 
   return (
     <button
       onClick={onClick}
-      className='text-slate-600 text-left rounded-full text-lg font-semibold hover:text-slate-950 cursor-pointer'
+      className={`${isActiveCategory ? 'text-slate-700 font-bold underline' : 'text-slate-400'} text-left rounded-full text-lg font-semibold hover:text-slate-950 cursor-pointer`}
     >
       {category}
     </button>

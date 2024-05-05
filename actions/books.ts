@@ -1,8 +1,33 @@
 'use server'
 
-import { books } from "@/db/schema"
-import { like, or } from "drizzle-orm"
-import db from "@/db/drizzle"
+// named imports
+import { Book, books } from '@/db/schema'
+import { like, or } from 'drizzle-orm'
+
+// default imports
+import db from '@/db/drizzle'
+
+export async function getBooks(category?: string) {
+  let booksData
+
+  if (category !== undefined && category !== ('all' || '모두')) {
+    const booksDetails = await db.select().from(books)
+
+    // filter books by category
+    booksData = booksDetails.filter((book: Book) => {
+      if (book.tags && book.tags.includes(category)) {
+        return book
+      }
+    })
+
+  } else {
+    booksData = await db.select().from(books)
+  }
+
+  if(!booksData) return null
+
+  return booksData
+}
 
 export async function getBooksByTitleAuthor(search: string) {
   const filteredBooks = await db.select({
@@ -17,6 +42,22 @@ export async function getBooksByTitleAuthor(search: string) {
       like(books.author, `%${search}%`)
     )
   )
-  console.log(filteredBooks)
   return filteredBooks
+}
+
+export async function getBookCategories() {
+  let categories = await db.select({
+    category: books.tags
+  }).from(books)
+
+  if(!categories) return null
+
+  const categoriesArr = Array.from(categories).map((category) => {
+    if (category.category && category.category.length > 0) {
+      return category.category
+    }
+  }).flat().filter((category) => category !== null)
+
+  const distinctCategories = Array.from(new Set(categoriesArr))
+  return distinctCategories
 }

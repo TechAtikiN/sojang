@@ -1,9 +1,11 @@
 // default imports
 import CategoryItem from './category-item'
 
-const categories = ['All', 'Fiction', 'Non-Fiction', 'Science', 'Technology', 'Business', 'Biography', 'Self-Help', 'Health', 'Cooking', 'Travel', 'History', 'Art', 'Religion', 'Philosophy', 'Sports', 'Music']
+type Props = {
+  categories: string[]
+}
 
-export default function Sidebar() {
+export default function Sidebar({ categories }: Props) {
   return (
     <div className='flex flex-col p-4 h-screen'>
       {/* LOGO */}
@@ -17,7 +19,7 @@ export default function Sidebar() {
       <div className='mt-8 px-6'>
         <h3 className='font-bold text-xl text-slate-700'>Explore Categories</h3>
         <ul className='mt-5 flex md:flex-col space-y-2 h-[480px] overflow-auto thin-scrollbar'>
-          {categories.map((category, index) => (
+          {['모두', ...categories].map((category, index) => (
             <CategoryItem key={index} category={category} />
           ))}
         </ul>

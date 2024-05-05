@@ -6,5 +6,5 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function formatString(str: string) {
-  return str.length > 20 ? str.slice(0, 20) + "..." : str
+  return str.length > 15 ? str.slice(0, 15) + "..." : str
 }
