@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://sojang.vercel.app/
+
+# Sitemaps
+Sitemap: https://sojang.vercel.app/sitemap.xml
