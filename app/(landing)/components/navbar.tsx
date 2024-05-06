@@ -10,7 +10,7 @@ export default function Navbar() {
       <Link href='/'
         className='font-semibold lowercase text-center font-serif text-3xl text-slate-700'
       >
-        Sojang
+        <h1>Sojang</h1>
       </Link>
       <Link
         href='/books'

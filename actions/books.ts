@@ -1,9 +1,8 @@
 'use server'
 
 // named imports
-import { Book, books } from '@/db/schema'
+import { books } from '@/db/schema'
 import { arrayContains, like, or } from 'drizzle-orm'
-import { revalidatePath } from 'next/cache'
 
 // default imports
 import db from '@/db/drizzle'

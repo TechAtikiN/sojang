@@ -1,8 +1,14 @@
 // named imports
 import { MoveRight } from 'lucide-react'
+import { Metadata } from 'next';
 
 // default imports
 import Link from 'next/link'
+
+export const metadata: Metadata = {
+  title: 'Sojang - Find the latest books of the week',
+  description: 'Sojang is a platform that helps you find the latest books of the week. We have a collection of books that you can explore and read.',
+}
 
 export default function Home() {
   return (

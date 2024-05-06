@@ -9,7 +9,7 @@ const font = Nunito({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Sojang',
-  description: 'Books that impact',
+  description: 'Sojang - Find the latest books of the week',
 };
 
 export default function RootLayout({
