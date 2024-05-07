@@ -1,8 +1,0 @@
-{
-  "crons": [
-    {
-      "path": "/api/scrape-site",
-      "schedule": "0 21 * * 1"
-    }
-  ]
-}
